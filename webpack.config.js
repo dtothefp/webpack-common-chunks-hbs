@@ -4,6 +4,7 @@ var path = require('path');
 
 module.exports = {
   entry: {
+    vendor: ['handlebars'],
     'bundle-with-hbs': './src/index.js',
     'no-hbs': './src/a.js',
     'with-hbs': './src/b.js'
@@ -22,9 +23,13 @@ module.exports = {
 
   plugins: [
     new CommonsChunkPlugin({
-      name: 'commons',
+      name: 'vendor',
       filename: 'commons.js',
       minChunks: 0
     })
-  ]
+  ],
+
+  node: {
+    fs: 'empty'
+  }
 };
